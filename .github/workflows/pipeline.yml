@@ -1,0 +1,33 @@
+name: Continous Intergation
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Copying the code from the repos to the runner machine
+      - name: Repository Checkout
+        uses: actions/checkout@v3
+
+      # Installing Node.js on he runner machine
+      - name: Node.js Installation
+        uses: actions/setup-node@v3
+        with:
+          node-version: 10.x
+          cache: 'npm'
+
+      # Installing the dependecies in the node_modules folder
+      - name: Node Modules Installation
+        run: npm install
+
+      # Compile and start the applciation
+      - name: Build
+        run: npm start
