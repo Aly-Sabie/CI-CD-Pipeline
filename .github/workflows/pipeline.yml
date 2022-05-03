@@ -14,20 +14,27 @@ jobs:
     steps:
 
       # Copying the code from the repos to the runner machine
-      - name: Repository Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
       # Installing Node.js on he runner machine
-      - name: Node.js Installation
+      - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 10.x
           cache: 'npm'
 
       # Installing the dependecies in the node_modules folder
-      - name: Node Modules Installation
+      - name: Install Node Modules
         run: npm install
 
       # Compile and start the applciation
       - name: Build
-        run: npm run build
+        run: npm run build --prod
+
+      # Uploading the production build artifacts
+      - name: Upload Artications
+        uses: actions/upload-artifacts
+        with:
+          name: app
+          path: dist
