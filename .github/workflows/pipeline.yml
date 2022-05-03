@@ -48,6 +48,9 @@ jobs:
   containerize:
 
     runs-on: ubuntu-latest
+    
+    # Specifying the dependency of this (containerize) job on the build job
+    needs: build
 
     steps:
       - name: Download application
