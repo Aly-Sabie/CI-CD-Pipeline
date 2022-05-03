@@ -30,4 +30,4 @@ jobs:
 
       # Compile and start the applciation
       - name: Build
-        run: ng build
+        run: npm run build
