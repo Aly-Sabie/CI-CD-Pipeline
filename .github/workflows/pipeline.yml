@@ -57,5 +57,4 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.Artifact_name }}
-      - run: ls -la
-      - run: la dist/ -la
+      - run: ls -la # dummy for error checking
