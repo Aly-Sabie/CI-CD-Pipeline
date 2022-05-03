@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  Artifact_name: "app"  # The name of the artifact holding the production build code
+
+
 jobs:
   build:
 
@@ -36,6 +40,19 @@ jobs:
       - name: Upload Artications
         uses: actions/upload-artifact@v3
         with:
-          name: app
+          name: ${{ env.Artifact_name }}
           path: dist/
           if-no-files-found: error
+
+
+  containerize:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download application
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.Artifact_name }}
+      - run: ls -la
+      - run: la dist/ -la
