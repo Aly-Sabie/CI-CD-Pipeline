@@ -37,4 +37,5 @@ jobs:
         uses: actions/upload-artifacts
         with:
           name: app
-          path: dist
+          path: dist/
+          if-no-files-found: error
