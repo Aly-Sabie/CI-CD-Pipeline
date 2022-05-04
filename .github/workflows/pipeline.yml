@@ -61,7 +61,7 @@ jobs:
       
       # Getting the Docker file from the repository
       - name: Checkout Dockerfile
-        uses: Bhacaz/checkout-files@v1
+        uses: actions/checkout@v3
         with:
           files: Dockerfile
 
