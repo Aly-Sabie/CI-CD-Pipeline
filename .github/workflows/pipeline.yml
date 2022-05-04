@@ -36,6 +36,9 @@ jobs:
       - name: Build
         run: npm run build --prod
 
+      - name: Moving Dockerfile
+        run: cp Dockerfile dist/
+
       # Uploading the production build artifacts
       - name: Upload Artications
         uses: actions/upload-artifact@v3
@@ -58,12 +61,4 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.Artifact_name }}
-      - run: ls -la
-
-      # Getting the Docker file from the repository
-      - name: Checkout Dockerfile
-        uses: actions/checkout@v3
-        with:
-          files: Dockerfile
-
       - run: ls -la
