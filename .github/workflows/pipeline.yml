@@ -49,6 +49,11 @@ jobs:
           path: dist/
           if-no-files-found: error
 
+      - name: Test
+        run: npm run test-headless
+
+      - run: ls -la
+
 
   containerize:
 
