@@ -36,6 +36,7 @@ jobs:
       - name: Build
         run: npm run build --prod
 
+      # Moving the Dockerfile to the arficats folder as it will be needed in the containerization job
       - name: Moving Dockerfile
         run: cp Dockerfile dist/
 
@@ -61,4 +62,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.Artifact_name }}
-      - run: ls -la
+
+      # Compiling the Dockerfile to a docker image
+      - name: Builing Docker Image
+        run: docker build -t Dockerfile ./
+
+      - run: docker images
