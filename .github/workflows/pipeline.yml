@@ -51,6 +51,9 @@ jobs:
 
       - name: Test
         run: npm run test-headless
+      
+      - name: Lint
+        run: npm run lint
 
       - run: ls -la
 
