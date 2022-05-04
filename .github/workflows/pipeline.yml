@@ -58,7 +58,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.Artifact_name }}
-      
+      - run: ls -la
+
       # Getting the Docker file from the repository
       - name: Checkout Dockerfile
         uses: actions/checkout@v3
