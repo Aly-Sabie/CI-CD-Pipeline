@@ -77,3 +77,29 @@ jobs:
         run: docker build . --file Dockerfile --tag app-img:latest
 
       - run: docker images
+
+
+  deploy:  # A dummy deployment job
+
+    runs-on: ubuntu-latest
+    
+    # # Specifying the dependency of this (containerize) job on the build job
+    # needs: build
+
+    steps:
+
+    # Login to Azure account
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+            az network vnet create \
+            --name myVNet \
+            --resource-group CD-rg \
+            --subnet-name default
+              
