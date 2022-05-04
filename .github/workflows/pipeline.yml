@@ -65,6 +65,6 @@ jobs:
 
       # Compiling the Dockerfile to a docker image
       - name: Builing Docker Image
-        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+        run: docker build . --file Dockerfile --tag app-img:latest
 
       - run: docker images
