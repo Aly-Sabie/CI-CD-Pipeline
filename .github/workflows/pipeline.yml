@@ -53,8 +53,16 @@ jobs:
     needs: build
 
     steps:
+      # Downloading the production build artifacts
       - name: Download application
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.Artifact_name }}
-      - run: ls -la # dummy for error checking
+      
+      # Getting the Docker file from the repository
+      - name: Checkout Dockerfile
+        use: Bhacaz/checkout-files@v1
+        with:
+          files: Dockerfile
+
+      - run: ls -la
