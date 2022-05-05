@@ -26,7 +26,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 12.x
           cache: 'npm'
 
       # Installing the dependecies in the node_modules folder
@@ -100,11 +100,13 @@ jobs:
       with:
         name: ${{ env.BUILD_Artifact }}
 
+
+    - run: ls -la
+
     - name: deploy to azure web apps
       uses: azure/webapps-deploy@v2
       with: 
         app-name: 'alyyysab3-site'
-        slot-name: 'production'
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C095F0A174164699BFC0481E0709F1C9 }}
         package: .
 
