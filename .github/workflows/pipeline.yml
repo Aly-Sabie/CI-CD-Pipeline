@@ -26,7 +26,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: 14.x
           cache: 'npm'
 
       # Installing the dependecies in the node_modules folder
@@ -49,13 +49,11 @@ jobs:
           path: dist/
           if-no-files-found: error
 
-      # - name: Test
-      #   run: npm run test-headless
+      - name: Test
+        run: npm run test-headless
       
-      # - name: Lint
-      #   run: npm run lint
-
-      # - run: ls -la
+      - name: Lint
+        run: npm run lint
 
 
   containerize:
@@ -99,9 +97,6 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: ${{ env.BUILD_Artifact }}
-
-
-    - run: ls -la
 
     - name: deploy to azure web apps
       uses: azure/webapps-deploy@v2
