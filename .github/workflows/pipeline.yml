@@ -83,8 +83,8 @@ jobs:
 
     runs-on: ubuntu-latest
     
-    # # Specifying the dependency of this (containerize) job on the build job
-    # needs: build
+    # Specifying the dependency of this (containerize) job on the build job
+    needs: build
 
     steps:
 
@@ -93,13 +93,27 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Deploy
-      uses: azure/CLI@v1
+    
+    # Downloading the production build artifacts
+    - name: Download application
+      uses: actions/download-artifact@v3
       with:
-        inlineScript: |
-            az network vnet create \
-            --name myVNet \
-            --resource-group CD-rg \
-            --subnet-name default
+        name: ${{ env.BUILD_Artifact }}
+
+    - name: deploy to azure web apps
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: 'new-website'
+        slot-name: 'production'
+        publish-profile: $
+        package: .
+
+    # - name: Deploy
+    #   uses: azure/CLI@v1
+    #   with:
+    #     inlineScript: |
+    #         az network vnet create \
+    #         --name myVNet \
+    #         --resource-group CD-rg \
+    #         --subnet-name default
               
