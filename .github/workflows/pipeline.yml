@@ -40,7 +40,7 @@ jobs:
 
       # Moving the Dockerfile to the arficats folder as it will be needed in the containerization job
       - name: Moving Dockerfile
-        run: cp ../infrastructure/docker/Dockerfile dist/
+        run: cp ../infrastructure/docker/production/Dockerfile dist/
 
       # Uploading the production build artifacts
       - name: Upload Artications
