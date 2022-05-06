@@ -5,6 +5,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
 
 env:
   BUILD_Artifact: "build"  # The name of the artifact holding the production build code
@@ -41,9 +42,6 @@ jobs:
       - name: Moving Dockerfile
         run: cp ../infrastructure/docker/Dockerfile dist/
 
-      - run: ls -la
-      - run: cd dist
-      - run: ls -la
       # Uploading the production build artifacts
       - name: Upload Artications
         uses: actions/upload-artifact@v3
