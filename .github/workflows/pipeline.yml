@@ -41,6 +41,8 @@ jobs:
       - name: Moving Dockerfile
         run: cp ../infrastructure/docker/Dockerfile dist/
 
+      - run: ls -la
+      - run: ls dist -la
       # Uploading the production build artifacts
       - name: Upload Artications
         uses: actions/upload-artifact@v3
