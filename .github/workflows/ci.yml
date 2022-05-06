@@ -21,8 +21,8 @@ env:
   
   # DockerHub access token
   DOCKERHUB_TOKEN: "ea207177-1ada-42a6-9d25-3a9cdd308a76"
-  echo -n ${{ env.DOCKERHUB_TOKEN }} | sudo docker login -u alysab3 --password-stdin
 
+  
 jobs:
   build:
 
