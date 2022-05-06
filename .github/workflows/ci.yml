@@ -18,6 +18,10 @@ env:
   TEST_Artifact: "test"
    # DockerHub Repository image new unique name
   Production_IMG: "alysab3/ci-cd-pipeline:${{ github.run_id }}-${{ github.run_attempt }}"
+  
+  # DockerHub credentials
+  DOCKER_USR: ${{ secrets.DOCKER_USR }}
+  DOCKER_PWD: ${{ secrets.DOCKER_PWD }}
 
 jobs:
   build:
@@ -85,5 +89,7 @@ jobs:
         run: docker build . --file Dockerfile --tag ${{ env.Production_IMG }}
 
       - name: Pushing the image to DockerHub
-        run: docker push ${{ env.Production_IMG }}
-
+        run: |
+        docker login -u ${{ DOCKER_USR }} -p ${{ DOCKER_PWD }}
+        docker push ${{ env.Production_IMG }}
+        docker logout
