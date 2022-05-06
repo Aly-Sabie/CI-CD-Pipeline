@@ -32,16 +32,17 @@ jobs:
       - run: cd website
       - run: ls -la
 
-      # Installing Node.js on he runner machine
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14.x
-          cache: 'npm'
+      # # Installing Node.js on he runner machine
+      # - name: Install Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 14.x
+      #     cache: 'npm'
 
       # Installing the dependecies in the node_modules folder
       - name: Install Node Modules
         run: npm install
+      - run: ls -la
 
       # Compile and start the applciation
       - name: Build
