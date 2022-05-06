@@ -90,6 +90,6 @@ jobs:
 
       - name: Pushing the image to DockerHub
         run: |
-        docker login -u ${{ secrets.DOCKER_USR }} -p ${{ secrets.DOCKER_PWD }}
+        docker login -u DOCKER_USR -p secrets.DOCKER_PWD
         docker push ${{ env.Production_IMG }}
         docker logout
