@@ -6,10 +6,10 @@ on:
   pull_request:
     branches: [ master ]
 
-# defaults:
-#   run:
-#     shell: bash
-#     working-directory: ./website
+defaults:
+  run:
+    shell: bash
+    working-directory: ./website
 
 
 env:
@@ -28,9 +28,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - run: ls -la
-      - run: cd website
-      - run: ls -la
+      # - run: ls -la
+      # - run: cd website
+      # - run: ls -la
 
       # # Installing Node.js on he runner machine
       # - name: Install Node.js
