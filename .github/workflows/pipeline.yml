@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.BUILD_Artifact }}
-          path: dist
+          path: website/dist
           if-no-files-found: error
 
       - name: Test
