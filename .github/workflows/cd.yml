@@ -6,7 +6,10 @@ on:
   workflow_run:
     workflows: ["Continous Intergation"]
     types:
-      - succeeded
+      - completed
+    check_run:
+      types: [completed]
+      conclusion: [success]
 
   # Manual trigger
   workflow_dispatch:
