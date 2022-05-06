@@ -16,7 +16,8 @@ on:
 env:
   BUILD_Artifact: "build"  # The name of the artifact holding the production build code
   TEST_Artifact: "test"
-  CONTAINER_IMG: "image"
+   # DockerHub Repository image new unique name
+  Production_IMG: "alysab3/ci-cd-pipeline:${{ github.run_id }}-{{ github.run_attempt }}"
 
 jobs:
   build:
@@ -81,7 +82,7 @@ jobs:
 
       # Compiling the Dockerfile to a docker image
       - name: Builing Docker Image
-        run: docker build . --file Dockerfile --tag app-img:latest
+        run: docker build . --file Dockerfile --tag ${{ env.Production_IMG }}
 
       - run: docker images
 
