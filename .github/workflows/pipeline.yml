@@ -49,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.BUILD_Artifact }}
-          path: dist/
+          path: .
           if-no-files-found: error
 
       - name: Test
