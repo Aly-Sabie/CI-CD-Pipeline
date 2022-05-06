@@ -19,9 +19,9 @@ env:
    # DockerHub Repository image new unique name
   Production_IMG: "alysab3/ci-cd-pipeline:${{ github.run_id }}-${{ github.run_attempt }}"
   
-  # DockerHub credentials
-  DOCKER_USR: ${{ secrets.DOCKER_USR }}
-  DOCKER_PWD: ${{ secrets.DOCKER_PWD }}
+  # DockerHub access token
+  DOCKERHUB_TOKEN: "ea207177-1ada-42a6-9d25-3a9cdd308a76"
+  echo -n ${{ env.DOCKERHUB_TOKEN }} | sudo docker login -u alysab3 --password-stdin
 
 jobs:
   build:
@@ -89,7 +89,7 @@ jobs:
         run: docker build . --file Dockerfile --tag ${{ env.Production_IMG }}
 
       - name: Login to Docker
-        run: docker login -u DOCKER_USR -p secrets.DOCKER_PWD
+        run: echo -n ${{ env.DOCKERHUB_TOKEN }} | sudo docker login -u alysab3 --password-stdin
         
       - name: Pushing the image to DockerHub
         run: docker push ${{ env.Production_IMG }}
