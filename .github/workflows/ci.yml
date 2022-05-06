@@ -88,8 +88,11 @@ jobs:
       - name: Builing Docker Image
         run: docker build . --file Dockerfile --tag ${{ env.Production_IMG }}
 
+      - name: Login to Docker
+        run: docker login -u DOCKER_USR -p secrets.DOCKER_PWD
+        
       - name: Pushing the image to DockerHub
-        run: |
-        docker login -u DOCKER_USR -p secrets.DOCKER_PWD
-        docker push ${{ env.Production_IMG }}
-        docker logout
+        run: docker push ${{ env.Production_IMG }}
+        
+      - name: Logout from Docker 
+        run: docker logout
