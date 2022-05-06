@@ -47,6 +47,7 @@ jobs:
       # Uploading the production build artifacts
       - name: Upload Artications
         uses: actions/upload-artifact@v3
+        working-directory: ./dist
         with:
           name: ${{ env.BUILD_Artifact }}
           path: .
