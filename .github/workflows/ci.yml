@@ -22,9 +22,11 @@ env:
   # DockerHub access token
   DOCKERHUB_TOKEN: "ea207177-1ada-42a6-9d25-3a9cdd308a76"
 
-  
+
 jobs:
   build:
+
+    name: Building
 
     runs-on: ubuntu-latest
 
@@ -59,15 +61,42 @@ jobs:
           name: ${{ env.BUILD_Artifact }}
           path: website/dist
           if-no-files-found: error
-
-      - name: Test
-        run: npm run test-headless
       
+
+  unit_tests:
+
+    name: Unit Testing
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./website
+
+  lint:
+
+    name: Linting
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./website
+    
+
+    steps:
+     # Copying the code from the repos to the runner machine
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Installing the dependecies in the node_modules folder
+      - name: Install Node Modules
+        run: npm install
+
       - name: Lint
         run: npm run lint
-      
-      # - name: e2e
-      #   run: npm run e2e
 
 
   containerize:
