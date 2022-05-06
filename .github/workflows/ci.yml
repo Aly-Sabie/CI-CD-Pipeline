@@ -84,5 +84,6 @@ jobs:
       - name: Builing Docker Image
         run: docker build . --file Dockerfile --tag ${{ env.Production_IMG }}
 
-      - run: docker images
+      - name: Pushing the image to DockerHub
+        run: docker push ${{ env.Production_IMG }}
 

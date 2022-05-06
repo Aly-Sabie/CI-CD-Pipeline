@@ -1,4 +1,4 @@
 # Base image
-FROM nginx:latest
+FROM node:latest
 
 MAINTAINER aly-sab3
