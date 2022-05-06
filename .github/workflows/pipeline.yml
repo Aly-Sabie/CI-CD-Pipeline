@@ -6,12 +6,6 @@ on:
   pull_request:
     branches: [ master ]
 
-defaults:
-  run:
-    shell: bash
-    working-directory: ./website
-
-
 env:
   BUILD_Artifact: "build"  # The name of the artifact holding the production build code
   TEST_Artifact: "test"
@@ -22,22 +16,17 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./website
+    
+
     steps:
       
       # Copying the code from the repos to the runner machine
       - name: Checkout Repository
         uses: actions/checkout@v3
-
-      # - run: ls -la
-      # - run: cd website
-      # - run: ls -la
-
-      # # Installing Node.js on he runner machine
-      # - name: Install Node.js
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 14.x
-      #     cache: 'npm'
 
       # Installing the dependecies in the node_modules folder
       - name: Install Node Modules
@@ -50,7 +39,7 @@ jobs:
 
       # Moving the Dockerfile to the arficats folder as it will be needed in the containerization job
       - name: Moving Dockerfile
-        run: cp Dockerfile dist/
+        run: cp ../infrastructure/docker/Dockerfile dist/
 
       # Uploading the production build artifacts
       - name: Upload Artications
