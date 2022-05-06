@@ -1,0 +1,57 @@
+name: Continous Deployment
+
+on:
+
+  # Trigger if the Continous Intergation Jobs finished successfully
+  workflow_run:
+    workflows: ["Continous Intergation"]
+    types:
+      - completed
+
+  # Manual trigger
+  workflow_dispatch:
+
+env:
+  BUILD_Artifact: "build"  # The name of the artifact holding the production build code
+  TEST_Artifact: "test"
+  CONTAINER_IMG: "image"
+
+
+
+
+jobs:
+
+  deploy:  # A dummy deployment job
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    # Login to Azure account
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    # Downloading the production build artifacts
+    - name: Download application
+      uses: actions/download-artifact@v3
+      with:
+        name: ${{ env.BUILD_Artifact }}
+
+    - name: deploy to azure web apps
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: 'alyyysab3-site'
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C095F0A174164699BFC0481E0709F1C9 }}
+        package: .
+
+    # - name: Deploy
+    #   uses: azure/CLI@v1
+    #   with:
+    #     inlineScript: |
+    #         az network vnet create \
+    #         --name myVNet \
+    #         --resource-group CD-rg \
+    #         --subnet-name default
+              
