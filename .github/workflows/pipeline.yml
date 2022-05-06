@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Changing to the website directory
-        run: cd website
+        run: ls -la
 
       # Installing Node.js on he runner machine
       - name: Install Node.js
