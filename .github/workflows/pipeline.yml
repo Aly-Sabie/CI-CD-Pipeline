@@ -23,13 +23,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-      - name: Changing to the website directory
-        run: cd website
       
       # Copying the code from the repos to the runner machine
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      - name: Changing to the website directory
+        run: cd website
 
       # Installing Node.js on he runner machine
       - name: Install Node.js
