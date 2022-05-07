@@ -183,7 +183,13 @@ jobs:
       - name: Download Build Artifacts
         uses: actions/download-artifact@v3
         with:
-          name: ./
+          name: ${{ env.BUILD_Artifact }}
+
+      - name: Download Test results
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.TEST_Artifact }}
+      - run: ls
 
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v1
@@ -197,6 +203,7 @@ jobs:
       - name: Uploading the test results
         run: jfrog rt u ${{ env.TEST_Artifact }} ci-cd-pipeline-npm
 
+      
       
   # deploy:  # A dummy deployment job
 
