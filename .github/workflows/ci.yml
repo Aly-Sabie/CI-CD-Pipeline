@@ -114,29 +114,29 @@ jobs:
         
 
 
-  containerize:
+  # containerize:
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
     
-    # Specifying the dependency of this (containerize) job on the build job
-    needs: build
+  #   # Specifying the dependency of this (containerize) job on the build job
+  #   needs: build
 
-    steps:
-      # Downloading the production build artifacts
-      - name: Download application
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.BUILD_Artifact }}
+  #   steps:
+  #     # Downloading the production build artifacts
+  #     - name: Download application
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: ${{ env.BUILD_Artifact }}
 
-      # Compiling the Dockerfile to a docker image
-      - name: Builing Docker Image
-        run: docker build . --file Dockerfile --tag ${{ env.Production_IMG }}
+  #     # Compiling the Dockerfile to a docker image
+  #     - name: Builing Docker Image
+  #       run: docker build . --file Dockerfile --tag ${{ env.Production_IMG }}
 
-      - name: Login to Docker
-        run: echo -n ${{ env.DOCKERHUB_TOKEN }} | sudo docker login -u alysab3 --password-stdin
+  #     - name: Login to Docker
+  #       run: echo -n ${{ env.DOCKERHUB_TOKEN }} | sudo docker login -u alysab3 --password-stdin
         
-      - name: Pushing the image to DockerHub
-        run: docker push ${{ env.Production_IMG }}
+  #     - name: Pushing the image to DockerHub
+  #       run: docker push ${{ env.Production_IMG }}
         
-      - name: Logout from Docker 
-        run: docker logout
+  #     - name: Logout from Docker 
+  #       run: docker logout
