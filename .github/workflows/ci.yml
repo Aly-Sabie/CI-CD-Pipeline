@@ -168,5 +168,6 @@ jobs:
         uses: jfrog/setup-jfrog-cli@v1
 
       - run: ls
-      - run: jfrog rt upload  "./*" "alysab3artifacts.jfrog.io/artifactory/ci-cd-pipeline-npm/"
+      - run: jfrog rt upload "." "ci-cd-pipeline-npm"
 
+      
