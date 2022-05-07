@@ -168,3 +168,4 @@ jobs:
         uses: jfrog/setup-jfrog-cli@v1
 
       - run: ls
+      - run: jfrog rt upload --flat=false "./*" p2-release-local/
