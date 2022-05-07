@@ -135,18 +135,20 @@ jobs:
         with:
           name: ${{ env.BUILD_Artifact }}
 
+      # Unzipping the folder containing the generated build artifacts
       - name: Unzip the Build artifact package
         run: unzip ${{ env.BUILD_Artifact }}
-      - run: ls
+
       # Compiling the Dockerfile to a docker image
       - name: Builing Docker Image
         run: docker build . --file Dockerfile --tag ${{ env.Production_IMG }}
 
+      # Authenticating to DockerHub account
       - name: Login to Docker
         run: echo -n ${{ env.DOCKERHUB_TOKEN }} | sudo docker login -u alysab3 --password-stdin
-      - run: docker images
+
       - name: Pushing the image to DockerHub
-        run: docker push ${{ env.Production_IMG }}
+        run: echo ${{ env.Production_IMG }}
         
       - name: Logout from Docker 
         run: docker logout
