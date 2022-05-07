@@ -148,6 +148,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    # Specifying the dependency of this (publish) job
+    needs: [ build, unit_tests, lint ]
+
     steps:
       # Downloading the production build artifacts
       - name: Download Build Artifacts
