@@ -183,7 +183,7 @@ jobs:
       - name: Download Build Artifacts
         uses: actions/download-artifact@v3
         with:
-          name: .
+          name: ./
 
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v1
