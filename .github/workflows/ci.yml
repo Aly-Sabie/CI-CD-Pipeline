@@ -169,7 +169,7 @@ jobs:
         uses: jfrog/setup-jfrog-cli@v1
 
       - name: Configuring JFrog account
-        run: frog config add alysab3artifacts --artifactory-url="https://alysab3artifacts.jfrog.io/artifactory/" --access-token="${{ env.JFROG_TOKEN }}" --interactive=false
+        run: jfrog config add alysab3artifacts --artifactory-url="https://alysab3artifacts.jfrog.io/artifactory/" --access-token="${{ env.JFROG_TOKEN }}" --interactive=false
 
       - name: Uploading the buidl artifact
         run: jfrog rt u ${{ env.BUILD_Artifact }} ci-cd-pipeline-npm
