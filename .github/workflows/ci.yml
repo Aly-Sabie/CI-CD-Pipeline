@@ -140,3 +140,22 @@ jobs:
         
   #     - name: Logout from Docker 
   #       run: docker logout
+
+
+  publish:
+    
+    name: Publish Artifacts
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # Downloading the production build artifacts
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.BUILD_Artifact }}
+
+      - name: Setup JFrog CLI
+        uses: jfrog/setup-jfrog-cli@v1
+
+      - run: jfrog --version
