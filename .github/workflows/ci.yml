@@ -124,7 +124,9 @@ jobs:
   containerize:
 
     runs-on: ubuntu-latest
-    
+    permissions:
+      packages: write
+      
     # Specifying the dependency of this (containerize) job on the build job
     needs: [ build, unit_tests, lint ]
 
