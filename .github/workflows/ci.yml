@@ -141,13 +141,22 @@ jobs:
       - name: Unzip the Build artifact package
         run: unzip ${{ env.BUILD_Artifact }}
 
-      # Compiling the Dockerfile to a docker image
-      - name: Builing Docker Image
-        run: docker build . --file Dockerfile --tag ${{ env.Production_IMG }}
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: alysab3
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Authenticating to DockerHub account
-      - name: Login to Docker
-        run: echo -n ${{ secrets.DOCKERHUB_TOKEN }} | sudo docker login -u alysab3 --password-stdin
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ env.Production_IMG }}
 
       - name: Pushing the image to DockerHub
         run: docker push ${{ env.Production_IMG }}
