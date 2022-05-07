@@ -16,7 +16,7 @@ on:
 env:
   # The name of the artifact holding the production build code
   BUILD_Artifact: "build-${{ github.run_id }}-${{ github.run_attempt }}.zip"
-  TEST_Artifact: "test-${{ github.run_id }}-${{ github.run_attempt }}.zip
+  TEST_Artifact: "test-${{ github.run_id }}-${{ github.run_attempt }}.zip"
    # DockerHub Repository image new unique name
   Production_IMG: "alysab3/ci-cd-pipeline:${{ github.run_id }}-${{ github.run_attempt }}"
   
