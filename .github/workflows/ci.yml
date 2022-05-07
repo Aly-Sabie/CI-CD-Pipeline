@@ -16,7 +16,7 @@ on:
 env:
   # The name of the artifact holding the production build code
   BUILD_Artifact: "build-${{ github.run_id }}-${{ github.run_attempt }}.zip"
-  TEST_Artifact: "test-${{ github.run_id }}-${{ github.run_attempt }}.zip"
+  TEST_Artifact: "test-${{ github.run_id }}-${{ github.run_attempt }}.html"
    # DockerHub Repository image new unique name
   Production_IMG: "alysab3/ci-cd-pipeline:${{ github.run_id }}-${{ github.run_attempt }}"
   
@@ -93,6 +93,17 @@ jobs:
 
       - name: Test
         run: npm run test-headless
+      
+      - name: Rename the results file
+        run: mv test/unit-test-result.html ${{ env.TEST_Artifact }}
+      
+      # Uploading the Test results artifacts
+      - name: Upload Artications
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.TEST_Artifact }}
+          path: website/test/${{ env.BUILD_Artifact }}
+          if-no-files-found: error
 
   lint:
 

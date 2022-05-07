@@ -17,7 +17,8 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      require('@angular-devkit/build-angular/plugins/karma'),
+      require('karma-html-reporter')
     ],
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -27,12 +28,29 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true
     },
 
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['html'],
+ 
+    // the default configuration
+    htmlReporter: {
+      outputDir: 'test', // where to put the reports
+      templatePath: null, // set if you moved jasmine_template.html
+      focusOnFailures: true, // reports show failures on start
+      namedFiles: true, // name files instead of creating sub-directories
+      pageTitle: null, // page title for reports; browser info by default
+      urlFriendlyName: false, // simply replaces spaces with _ for files/dirs
+      reportName: 'unit-test-result',
+
+
+      // experimental
+      preserveDescribeNesting: false, // folded suites stay folded 
+      foldAll: false, // reports start folded (only with preserveDescribeNesting)
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
     singleRun: false
+
+
   });
 };
