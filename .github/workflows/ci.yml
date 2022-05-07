@@ -126,7 +126,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       packages: write
-      
+
     # Specifying the dependency of this (containerize) job on the build job
     needs: [ build, unit_tests, lint ]
 
@@ -147,7 +147,7 @@ jobs:
 
       # Authenticating to DockerHub account
       - name: Login to Docker
-        run: echo ${{ secrets.DOCKERHUB_TOKEN }} | sudo docker login -u alysab3 --password-stdin
+        run: echo -n ${{ secrets.DOCKERHUB_TOKEN }} | sudo docker login -u alysab3 --password-stdin
 
       - name: Pushing the image to DockerHub
         run: docker push ${{ env.Production_IMG }}
