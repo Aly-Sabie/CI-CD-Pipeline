@@ -168,4 +168,6 @@ jobs:
         uses: jfrog/setup-jfrog-cli@v1
 
       - run: ls
-      - run: jfrog rt upload --flat=false "./*" --url "https://alysab3artifacts.jfrog.io/artifactory/ci-cd-pipeline-npm/"
+      - run: jfrog rt upload --flat=false "./*" "alysab3artifacts.jfrog.io/artifactory/ci-cd-pipeline-npm/"
+
+      
