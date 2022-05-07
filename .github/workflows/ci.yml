@@ -145,10 +145,10 @@ jobs:
 
       # Authenticating to DockerHub account
       - name: Login to Docker
-        run: echo -n ${{ env.DOCKERHUB_TOKEN }} | sudo docker login -u alysab3 --password-stdin && docker push ${{ env.Production_IMG }}
+        run: echo ${{ env.DOCKERHUB_TOKEN }} | sudo docker login -u alysab3 --password-stdin
 
-      # - name: Pushing the image to DockerHub
-      #   run: docker push ${{ env.Production_IMG }}
+      - name: Pushing the image to DockerHub
+        run: docker push ${{ env.Production_IMG }}
         
       - name: Logout from Docker 
         run: docker logout
