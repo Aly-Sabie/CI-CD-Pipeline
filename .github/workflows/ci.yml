@@ -14,8 +14,9 @@ on:
   workflow_dispatch:
 
 env:
-  BUILD_Artifact: "build"  # The name of the artifact holding the production build code
-  TEST_Artifact: "test"
+  # The name of the artifact holding the production build code
+  BUILD_Artifact: "build-${{ github.run_id }}-${{ github.run_attempt }}.zip"
+  TEST_Artifact: "test-${{ github.run_id }}-${{ github.run_attempt }}.zip
    # DockerHub Repository image new unique name
   Production_IMG: "alysab3/ci-cd-pipeline:${{ github.run_id }}-${{ github.run_attempt }}"
   
@@ -54,12 +55,17 @@ jobs:
       - name: Moving Dockerfile
         run: cp ../infrastructure/docker/production/Dockerfile dist/
 
+      - name: Zipping the Build artifacts
+        run: cd dist && zip BUILD_Artifact * -r
+      - run: ls -la
+
+      
       # Uploading the production build artifacts
       - name: Upload Artications
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.BUILD_Artifact }}
-          path: website/dist
+          path: website/dist/BUILD_Artifact
           if-no-files-found: error
       
 

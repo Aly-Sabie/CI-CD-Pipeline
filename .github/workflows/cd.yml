@@ -1,17 +1,6 @@
 name: Continous Deployment
 
 on:
-
-  # Trigger if the Continous Intergation Jobs finished successfully
-  workflow_run:
-    workflows: ["Continous Intergation"]
-    types:
-      - completed
-    check_run:
-      types: [completed]
-      conclusion: [success]
-
-  # Manual trigger
   workflow_dispatch:
 
 env:
