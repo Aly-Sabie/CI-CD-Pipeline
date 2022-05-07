@@ -96,7 +96,7 @@ jobs:
       
       - name: Rename the results file
         run: mv test/unit-test-result.html ${{ env.TEST_Artifact }}
-      
+      - run: ls
       # Uploading the Test results artifacts
       - name: Upload Artications
         uses: actions/upload-artifact@v3
