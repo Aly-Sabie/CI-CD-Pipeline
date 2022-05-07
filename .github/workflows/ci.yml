@@ -134,6 +134,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.BUILD_Artifact }}
+
+      - name: Unzip the Build artifact package
+        run: unzip ${{ env.BUILD_Artifact }}
       - run: ls
       # Compiling the Dockerfile to a docker image
       - name: Builing Docker Image
