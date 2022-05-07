@@ -183,7 +183,7 @@ jobs:
       - name: Download Build Artifacts
         uses: actions/download-artifact@v3
         with:
-          name: ${{ env.BUILD_Artifact }}
+          name: .
 
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v1
@@ -191,7 +191,10 @@ jobs:
       - name: Configuring JFrog account
         run: jfrog config add alysab3artifacts --artifactory-url="https://alysab3artifacts.jfrog.io/artifactory/" --access-token="${{ env.JFROG_TOKEN }}" --interactive=false
 
-      - name: Uploading the buidl artifact
+      - name: Uploading the build artifact
         run: jfrog rt u ${{ env.BUILD_Artifact }} ci-cd-pipeline-npm
+
+      - name: Uploading the test results
+        run: jfrog rt u ${{ env.TEST_Artifact }} ci-cd-pipeline-npm
 
       
