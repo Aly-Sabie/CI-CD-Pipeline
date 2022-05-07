@@ -20,8 +20,9 @@ env:
    # DockerHub Repository image new unique name
   Production_IMG: "alysab3/ci-cd-pipeline:${{ github.run_id }}-${{ github.run_attempt }}"
   
-  # DockerHub access token
+  # Access tokens
   DOCKERHUB_TOKEN: "ea207177-1ada-42a6-9d25-3a9cdd308a76"
+  JFROG_TOKEN: "eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiIyTks4UGZjWWZnVFhic1ZCdnpZZ2p3N3hIbkIzUXVBbjYxem4tb05RVl9NIn0.eyJleHQiOiJ7XCJyZXZvY2FibGVcIjpcInRydWVcIn0iLCJzdWIiOiJqZmFjQDAxZzI4ejN3N2swczd5MDVjZWVzcXMwcjRyXC91c2Vyc1wvYWx5c2FiMyIsInNjcCI6ImFwcGxpZWQtcGVybWlzc2lvbnNcL2FkbWluIiwiYXVkIjpbImpmcnRAKiIsImpmYWNAKiIsImpmZXZ0QCoiLCJqZm1kQCoiLCJqZmNvbkAqIl0sImlzcyI6ImpmZmVAMDAwIiwiZXhwIjoxNjU0NTA4NjYyLCJpYXQiOjE2NTE5MTY2NjIsImp0aSI6IjVlMDRiNDc3LWJlYTMtNDk0YS05OGYzLTJkZmZkMmMwMGY1YSJ9.TdoeHl9cmFIqEzlVZy1TlEP8L6yhbsXJ28AVcP7JYV1jXe3l5C6BD5N3NaW788lmizswMIJPH-XOVjwIkEgITKaQwUEpyBqp9kI51OvBcT4mHRaij7e4fDFGlQHBrD5qSR893p-oEQgGX1l5hqQucMEJRPLfvKpcGPp-RKlmyxr-j4CK1Nwn6iLMNpT9XtHkP1Q6jRs-TxjISKq1g5kWf2B789XQtmlocE6JPhHHyLjBd0Gx56fxFDcG89ISepZTB0PHsxlExgcMbCGKi-kZklp9OpeYBjTQEaTzGXG0MxTawqgucNBdsVk_CrpvPUKfmXaCAVAvGWKoXaaJ9SWymQ"
 
 
 jobs:
@@ -167,7 +168,10 @@ jobs:
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v1
 
-      - run: ls
-      - run: jfrog rt upload "." "ci-cd-pipeline-npm"
+      - name: Configuring JFrog account
+        run: frog config add alysab3artifacts --artifactory-url="https://alysab3artifacts.jfrog.io/artifactory/" --access-token="${{ env.JFROG_TOKEN }}" --interactive=false
+
+      - name: Uploading the buidl artifact
+        run: jfrog rt u ${{ env.BUILD_Artifact }} ci-cd-pipeline-npm
 
       
