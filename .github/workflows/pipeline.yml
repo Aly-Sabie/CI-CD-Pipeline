@@ -222,6 +222,16 @@ jobs:
             sudo apt-get update -y;
             sudo apt-get upgrade -y;
             sudo apt-get install apache2 -y;
+
+      # Downloading the production build artifacts
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.BUILD_Artifact }}
+
+      - run: ls
+      - run: unzip ${{ env.BUILD_Artifact }}
+      - run: ls
       # - name: Deploy source-code
       #   uses: appleboy/scp-action@master
       #   with:
@@ -229,7 +239,7 @@ jobs:
       #     username: azureuser
       #     password: "P@ssw0rdP@ssw0rd"
       #     port: 22
-      #     source: "tests/a.txt,tests/b.txt"
+      #     source: ""
       #     target: "/var/www/html/"
         
   # deploy:  # A dummy deployment job
