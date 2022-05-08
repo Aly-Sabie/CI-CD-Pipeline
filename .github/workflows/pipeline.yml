@@ -233,12 +233,18 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{ secrets.AZURE_ACCESS }}
 
       - name: Disable The staging node
         uses: azure/CLI@v1
         with:
-          inlineScript: ls
+          inlineScript: |
+            az network traffic-manager endpoint update \
+            -g deployment \
+            --profile-name alyysab3 \
+            -n node2 \
+            --endpoint-status Disabled \ 
+            --type azureEndpoints
 
       - name: Deploy to the staging node
         uses: appleboy/scp-action@master
@@ -253,8 +259,14 @@ jobs:
       - name: Enable The staging node
         uses: azure/CLI@v1
         with:
-          inlineScript: az network traffic-manager endpoint update -g deployment --profile-name alyysab3  -n node2 --endpoint-status Enabled --type azureEndpoints;
-      
+          inlineScript: |
+            az network traffic-manager endpoint update \
+            -g deployment \
+            --profile-name alyysab3 \
+            -n node2 \
+            --endpoint-status Enabled \ 
+            --type azureEndpoints
+
       - name: Disable The production node
         uses: azure/CLI@v1
         with:
@@ -264,7 +276,7 @@ jobs:
             --profile-name alyysab3 \
             -n node1 \
             --endpoint-status Disabled \ 
-            --type azureEndpoints \
+            --type azureEndpoints
 
 
       - name: Deploy to the production node
@@ -286,7 +298,7 @@ jobs:
             --profile-name alyysab3 \
             -n node1 \
             --endpoint-status Enabled \ 
-            --type azureEndpoints \
+            --type azureEndpoints
     
         #   - name: executing remote ssh commands using password
         # uses: appleboy/ssh-action@master
