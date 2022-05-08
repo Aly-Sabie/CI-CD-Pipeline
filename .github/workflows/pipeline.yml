@@ -29,6 +29,19 @@ env:
   PASS: P@ssw0rdP@ssw0rd
   NODE1_DNS: alyysab31.eastus.cloudapp.azure.com
   NODE2_DNS: alyysab32.eastus.cloudapp.azure.com
+  AZURE_ACCESS: |
+    "{
+    "clientId": "563a8781-95bf-404a-aae4-d8f73df6198b",
+    "clientSecret": "07jU.NGNKY~SXUi92BLaTkD4.9WTsb6yIy",
+    "subscriptionId": "1f19ec1f-8c59-45a2-a3d4-672be423d6fb",
+    "tenantId": "0884fc48-2e9a-4438-ab32-2f79ec46da6e",
+    "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+    "resourceManagerEndpointUrl": "https://management.azure.com/",
+    "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+    "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+    "galleryEndpointUrl": "https://gallery.azure.com/",
+    "managementEndpointUrl": "https://management.core.windows.net/"
+    }"
 
 jobs:
   build:
@@ -233,7 +246,7 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_ACCESS }}
+          creds: ${{ env.AZURE_ACCESS }}
 
       - name: Disable The staging node
         uses: azure/CLI@v1
