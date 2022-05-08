@@ -219,9 +219,9 @@ jobs:
           password: "P@ssw0rdP@ssw0rd"
           port: 22
           script: |
-          sudo apt-get update -y;
-          sudo apt-get upgrade -y;
-          sudo apt-get install apache2 -y;
+            sudo apt-get update -y;
+            sudo apt-get upgrade -y;
+            sudo apt-get install apache2 -y;
       # - name: Deploy source-code
       #   uses: appleboy/scp-action@master
       #   with:
