@@ -218,7 +218,19 @@ jobs:
           username: azureuser
           password: "P@ssw0rdP@ssw0rd"
           port: 22
-          script: whoami
+          script: |
+          sudo apt-get update -y;
+          sudo apt-get upgrade -y;
+          sudo apt-get install apache2 -y;
+      # - name: Deploy source-code
+      #   uses: appleboy/scp-action@master
+      #   with:
+      #     host: alyysab31.eastus.cloudapp.azure.com
+      #     username: azureuser
+      #     password: "P@ssw0rdP@ssw0rd"
+      #     port: 22
+      #     source: "tests/a.txt,tests/b.txt"
+      #     target: "/var/www/html/"
         
   # deploy:  # A dummy deployment job
 
