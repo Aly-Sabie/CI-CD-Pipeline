@@ -40,3 +40,4 @@ alyysab3@gmail.com
 ``` 
 > Password: P@ssw0rdP@ssw0rd
   - Screenshot:
+![](https://github.com/Aly-Sabie/CI-CD-Pipeline/blob/master/images/jfrog-scr.png?raw=true)
