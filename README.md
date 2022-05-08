@@ -30,8 +30,9 @@ Used in the website code implementation
 
 ## Demo Steps
 ##### steps
-- asd
+- Upload all this code to a GitHub repository.
 - Go to the actions tab to monitor the CI/CD workflow execution that takes an average 4 mins from the developers commit on the master branch until the change is released.
+- You can enter each job of these jobs and check it's execution step by step.
 ![](https://github.com/Aly-Sabie/CI-CD-Pipeline/blob/master/images/jobs-scr.png?raw=true)
 
 - Check the deployed website at [http://alyysab3.trafficmanager.net/](alyysab3.trafficmanager.net/)
