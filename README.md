@@ -35,9 +35,26 @@ Used in the website code implementation
 - Check the deployed website at alyysab3.trafficmanager.net/
 - You can check uploaded build artifacts and test cases by logging into this link  and check the artifacts upload date
   - Credentials:
+Username:
 ```
 alyysab3@gmail.com
 ``` 
-> Password: P@ssw0rdP@ssw0rd
+Password:
+```
+P@ssw0rdP@ssw0rd
+```
   - Screenshot:
 ![](https://github.com/Aly-Sabie/CI-CD-Pipeline/blob/master/images/jfrog-scr.png?raw=true)
+
+- You can check the uploaded docker images from DockerHub account
+  - Credentials:
+Username:
+```
+alyysab3@gmail.com
+``` 
+Password:
+```
+P@ssw0rdP@ssw0rd
+```
+  - Screenshot:
+![]()
