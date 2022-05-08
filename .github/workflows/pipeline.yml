@@ -203,6 +203,9 @@ jobs:
       - name: Uploading the test results
         run: jfrog rt u ${{ env.TEST_Artifact }} ci-cd-pipeline-npm
 
+
+
+
   deploy:
 
     runs-on: ubuntu-latest
