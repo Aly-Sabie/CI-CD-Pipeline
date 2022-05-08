@@ -32,6 +32,22 @@ Used in the website code implementation
 ##### Steps
 - Make any changes in the repository files to see it lastly deployed on the production server.
 > For example: You can change `website/src/assets/images/pets.png` file with any other image.
+- On the GitHub repository you are going to use add action secret from the secrets tab and name it `AZURE_ACCESS` and git it the following value
+```
+{
+    "clientId": "563a8781-95bf-404a-aae4-d8f73df6198b",
+    "clientSecret": "07jU.NGNKY~SXUi92BLaTkD4.9WTsb6yIy",
+    "subscriptionId": "1f19ec1f-8c59-45a2-a3d4-672be423d6fb",
+    "tenantId": "0884fc48-2e9a-4438-ab32-2f79ec46da6e",
+    "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+    "resourceManagerEndpointUrl": "https://management.azure.com/",
+    "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+    "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+    "galleryEndpointUrl": "https://gallery.azure.com/",
+    "managementEndpointUrl": "https://management.core.windows.net/"
+}
+```
+
 - Upload all this code to a GitHub repository.
 - Go to the actions tab to monitor the CI/CD workflow execution that takes an average 4 mins from the developers commit on the master branch until the change is released.
 - You can enter each job of these jobs and check it's execution step by step.
