@@ -220,15 +220,15 @@ jobs:
           name: ${{ env.BUILD_Artifact }}
 
       - run: unzip ${{ env.BUILD_Artifact }}
-      # - name: Deploy Build artifacts
-      #   uses: appleboy/scp-action@master
-      #   with:
-      #     host: alyysab31.eastus.cloudapp.azure.com
-      #     username: azureuser
-      #     password: "P@ssw0rdP@ssw0rd"
-      #     port: 22
-      #     source: .
-      #     target: "/var/www/html/"
+      - name: Deploy Build artifacts
+        uses: appleboy/scp-action@master
+        with:
+          host: alyysab31.eastus.cloudapp.azure.com
+          username: azureuser
+          password: "P@ssw0rdP@ssw0rd"
+          port: 22
+          source: .
+          target: "/var/www/html/"
         
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
@@ -237,7 +237,9 @@ jobs:
           username: azureuser
           password: "P@ssw0rdP@ssw0rd"
           port: 22
-          script: "sudo chown -R azureuser:azureuser /var/www"
+          script: "|
+            ls;
+            ls /var/www/html/;
 
 
 
