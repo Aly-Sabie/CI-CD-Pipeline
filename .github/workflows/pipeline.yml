@@ -244,7 +244,7 @@ jobs:
             --profile-name alyysab3 \
             -n node2 \
             --endpoint-status Disabled \ 
-            --type azureEndpoints \
+            --type azureEndpoints;
 
       - name: Deploy to the staging node
         uses: appleboy/scp-action@master
@@ -265,7 +265,7 @@ jobs:
             --profile-name alyysab3 \
             -n node2 \
             --endpoint-status Enabled \ 
-            --type azureEndpoints \
+            --type azureEndpoints;
       
       - name: Disable The production node
         uses: azure/CLI@v1
