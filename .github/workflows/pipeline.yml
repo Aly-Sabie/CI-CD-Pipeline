@@ -214,7 +214,7 @@ jobs:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
-          host: alyysab31.eastus.cloudapp.azure.com
+          host: alyysab32.eastus.cloudapp.azure.com
           username: azureuser
           password: "P@ssw0rdP@ssw0rd"
           port: 22
