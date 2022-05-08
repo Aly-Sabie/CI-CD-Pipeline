@@ -30,12 +30,14 @@ Used in the website code implementation
 
 ## Demo Steps
 ##### steps
+- Make any changes in the repository files to see it lastly deployed on the production server.
+> For example: You can change `website/src/assets/images/pets.png` with any other image.
 - Upload all this code to a GitHub repository.
 - Go to the actions tab to monitor the CI/CD workflow execution that takes an average 4 mins from the developers commit on the master branch until the change is released.
 - You can enter each job of these jobs and check it's execution step by step.
 ![](https://github.com/Aly-Sabie/CI-CD-Pipeline/blob/master/images/jobs-scr.png?raw=true)
 
-- Check the deployed website at [http://alyysab3.trafficmanager.net/](alyysab3.trafficmanager.net/)
+- Check the deployed website with the new changes at [http://alyysab3.trafficmanager.net/](alyysab3.trafficmanager.net/)
 - You can check uploaded build artifacts and test cases by logging into this link [JFrog Artifactory](https://alysab3artifacts.jfrog.io/ui/native/ci-cd-pipeline-npm-locals) and check the artifacts upload date.
 Username:
 ```
