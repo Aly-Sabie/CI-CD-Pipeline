@@ -1,7 +1,7 @@
 # CI/CD Pipeline
 
 ![GitHub CI](https://github.com/Aly-Sabie/CI-CD-Pipeline/actions/workflows/pipeline.yml/badge.svg)
-[![Build Status](https://github.com/spring-petclinic/spring-petclinic-angular/actions/workflows/angular-ci.yml/badge.svg)](https://github.com/spring-petclinic/spring-petclinic-angular/actions/workflows/angular-ci.yml)
+
 ![CI/CD Pipeline](https://github.com/Aly-Sabie/CI-CD-Pipeline/blob/master/images/ci-cd.png?raw=true)
 
 ## About
