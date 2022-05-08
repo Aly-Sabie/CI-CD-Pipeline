@@ -35,6 +35,8 @@ Used in the website code implementation
 - Check the deployed website at alyysab3.trafficmanager.net/
 - You can check uploaded build artifacts and test cases by logging into this link  and check the artifacts upload date
   - Credentials:
-> username: alyysab3@gmail.com    
-> password: P@ssw0rdP@ssw0rd
+```
+alyysab3@gmail.com
+``` 
+> Password: P@ssw0rdP@ssw0rd
   - Screenshot:
