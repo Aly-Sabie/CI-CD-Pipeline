@@ -5,6 +5,8 @@
     resource_group: deploy
     vnet: network
     nic_name: node-1-nic
+    NSG: new-nsg
+
   tasks:
 
   - name: Create virtual network
@@ -46,6 +48,26 @@
       subnet: mySubnet
       public_ip_name: myPublicIP
       security_group: myNetworkSecurityGroup
+
+
+  – name: Create Network Security Group
+    azure_rm_securitygroup:
+      resource_group: "{{ resource_group }}"
+      name: "{{ NSG }}"
+      rules:
+        – name: SSH
+          protocol: Tcp
+          destination_port_range: 22
+          access: Allow
+          priority: 1001
+          direction: Inbound
+        – name: HTTP
+          protocol: Tcp
+          destination_port_range: 80
+          access: Allow
+          priority: 1000
+          direction: Inbound
+
 
   - name: Create VM
     azure_rm_virtualmachine:
