@@ -229,6 +229,12 @@ jobs:
       - name: Unzip the Build folder
         run: unzip ${{ env.BUILD_Artifact }}
       
+      # Login to Azure account
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Disable The staging node
         uses: azure/CLI@v1
         with:
