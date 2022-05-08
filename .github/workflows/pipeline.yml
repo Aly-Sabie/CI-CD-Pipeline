@@ -209,19 +209,20 @@ jobs:
   deploy:
 
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: alyysab32.eastus.cloudapp.azure.com
-          username: azureuser
-          password: "P@ssw0rdP@ssw0rd"
-          port: 22
-          script: |
-            sudo apt-get update -y;
-            sudo apt-get upgrade -y;
-            sudo apt-get install apache2 -y;
+      # - name: executing remote ssh commands using password
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: alyysab32.eastus.cloudapp.azure.com
+      #     username: azureuser
+      #     password: "P@ssw0rdP@ssw0rd"
+      #     port: 22
+      #     script: |
+      #       sudo apt-get update -y;
+      #       sudo apt-get upgrade -y;
+      #       sudo apt-get install apache2 -y;
 
       # Downloading the production build artifacts
       - name: Download Build Artifacts
