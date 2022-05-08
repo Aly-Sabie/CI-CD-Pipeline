@@ -34,7 +34,6 @@ Used in the website code implementation
 - Go to the actions tab to monitor the CI/CD workflow execution
 - Check the deployed website at alyysab3.trafficmanager.net/
 - You can check uploaded build artifacts and test cases by logging into this link [JFrog Artifactory](https://alysab3artifacts.jfrog.io/ui/native/ci-cd-pipeline-npm-locals) and check the artifacts upload date.
-  - Credentials:\
 Username:
 ```
 alyysab3@gmail.com
@@ -43,11 +42,10 @@ Password:
 ```
 P@ssw0rdP@ssw0rd
 ```
-  - Screenshot:
+Screenshot:
 ![](https://github.com/Aly-Sabie/CI-CD-Pipeline/blob/master/images/jfrog-scr.png?raw=true)
 
 - You can check the uploaded docker images by logging in to this [Docker Hub](https://hub.docker.com/repository/docker/alysab3/ci-cd-pipeline) link.
-  - Credentials:\
 Username:
 ```
 alyysab3@gmail.com
@@ -56,5 +54,5 @@ Password:
 ```
 P@ssw0rdP@ssw0rd
 ```
-  - Screenshot:
+Screenshot:
 ![](https://github.com/Aly-Sabie/CI-CD-Pipeline/blob/master/images/dockerhub-scr.png?raw=true)
