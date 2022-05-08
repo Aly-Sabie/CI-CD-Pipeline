@@ -238,13 +238,7 @@ jobs:
       - name: Disable The staging node
         uses: azure/CLI@v1
         with:
-          inlineScript: |
-            az network traffic-manager endpoint update \
-            -g deployment \
-            --profile-name alyysab3 \
-            -n node2 \
-            --endpoint-status Disabled \ 
-            --type azureEndpoints
+          inlineScript: az network traffic-manager endpoint update -g deployment --profile-name alyysab3 -n node2 --endpoint-status Disabled --type azureEndpoints
 
       - name: Deploy to the staging node
         uses: appleboy/scp-action@master
