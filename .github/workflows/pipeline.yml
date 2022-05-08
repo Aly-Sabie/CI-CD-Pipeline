@@ -24,6 +24,11 @@ env:
   DOCKERHUB_TOKEN: "ea207177-1ada-42a6-9d25-3a9cdd308a76"
   JFROG_TOKEN: "eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiIyTks4UGZjWWZnVFhic1ZCdnpZZ2p3N3hIbkIzUXVBbjYxem4tb05RVl9NIn0.eyJleHQiOiJ7XCJyZXZvY2FibGVcIjpcInRydWVcIn0iLCJzdWIiOiJqZmFjQDAxZzI4ejN3N2swczd5MDVjZWVzcXMwcjRyXC91c2Vyc1wvYWx5c2FiMyIsInNjcCI6ImFwcGxpZWQtcGVybWlzc2lvbnNcL2FkbWluIiwiYXVkIjpbImpmcnRAKiIsImpmYWNAKiIsImpmZXZ0QCoiLCJqZm1kQCoiLCJqZmNvbkAqIl0sImlzcyI6ImpmZmVAMDAwIiwiZXhwIjoxNjU0NTA4NjYyLCJpYXQiOjE2NTE5MTY2NjIsImp0aSI6IjVlMDRiNDc3LWJlYTMtNDk0YS05OGYzLTJkZmZkMmMwMGY1YSJ9.TdoeHl9cmFIqEzlVZy1TlEP8L6yhbsXJ28AVcP7JYV1jXe3l5C6BD5N3NaW788lmizswMIJPH-XOVjwIkEgITKaQwUEpyBqp9kI51OvBcT4mHRaij7e4fDFGlQHBrD5qSR893p-oEQgGX1l5hqQucMEJRPLfvKpcGPp-RKlmyxr-j4CK1Nwn6iLMNpT9XtHkP1Q6jRs-TxjISKq1g5kWf2B789XQtmlocE6JPhHHyLjBd0Gx56fxFDcG89ISepZTB0PHsxlExgcMbCGKi-kZklp9OpeYBjTQEaTzGXG0MxTawqgucNBdsVk_CrpvPUKfmXaCAVAvGWKoXaaJ9SWymQ"
 
+  # Azrue Credentials
+  USER: azureuser
+  PASS: P@ssw0rdP@ssw0rd
+  NODE1_DNS: alyysab31.eastus.cloudapp.azure.com
+  NODE2_DNS: alyysab32.eastus.cloudapp.azure.com
 
 jobs:
   build:
@@ -208,38 +213,95 @@ jobs:
 
   deploy:
 
+    name: Blue/Green Deployment on Azure
     runs-on: ubuntu-latest
-    needs: build
+    
+    # Specifying the dependency of this (containerize) job on the build job
+    needs: [ build, unit_tests, lint ]
 
     steps:
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: alyysab32.eastus.cloudapp.azure.com
-          username: azureuser
-          password: "P@ssw0rdP@ssw0rd"
-          port: 22
-          script: sudo chown -R azureuser:azureuser /var/www
-
-
-
       # Downloading the production build artifacts
       - name: Download Build Artifacts
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.BUILD_Artifact }}
 
-      - run: unzip ${{ env.BUILD_Artifact }}
-      - name: Deploy Build artifacts
+      - name: Unzip the Build folder
+        run: unzip ${{ env.BUILD_Artifact }}
+      
+      - name: Disable The staging node
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az network traffic-manager endpoint update \
+            -g deployment \
+            --profile-name alyysab3 \
+            -n node2 \
+            --endpoint-status Disabled \ 
+            --type azureEndpoints \
+
+      - name: Deploy to the staging node
         uses: appleboy/scp-action@master
         with:
-          host: alyysab32.eastus.cloudapp.azure.com
-          username: azureuser
-          password: "P@ssw0rdP@ssw0rd"
+          host: ${{ env.NODE2_DNS }}
+          username: ${{ env.USER }}
+          password: ${{ env.PASS }}
+          port: 22
+          source: .
+          target: "/var/www/html/"
+
+      - name: Enable The staging node
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az network traffic-manager endpoint update \
+            -g deployment \
+            --profile-name alyysab3 \
+            -n node2 \
+            --endpoint-status Enabled \ 
+            --type azureEndpoints \
+      
+      - name: Disable The production node
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az network traffic-manager endpoint update \
+            -g deployment \
+            --profile-name alyysab3 \
+            -n node1 \
+            --endpoint-status Disabled \ 
+            --type azureEndpoints \
+
+
+      - name: Deploy to the production node
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ env.NODE1_DNS }}
+          username: ${{ env.USER }}
+          password: ${{ env.PASS }}
           port: 22
           source: .
           target: "/var/www/html/"
         
+      - name: Enable The production node
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az network traffic-manager endpoint update \
+            -g deployment \
+            --profile-name alyysab3 \
+            -n node1 \
+            --endpoint-status Enabled \ 
+            --type azureEndpoints \
+    
+        #   - name: executing remote ssh commands using password
+        # uses: appleboy/ssh-action@master
+        # with:
+        #   host: alyysab32.eastus.cloudapp.azure.com
+        #   username: azureuser
+        #   password: "P@ssw0rdP@ssw0rd"
+        #   port: 22
+        #   script: sudo chown -R azureuser:azureuser /var/www
 
 
 
