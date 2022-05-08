@@ -237,7 +237,7 @@ jobs:
           username: azureuser
           password: "P@ssw0rdP@ssw0rd"
           port: 22
-          script: "|
+          script: |
             ls;
             ls /var/www/html/;
 
