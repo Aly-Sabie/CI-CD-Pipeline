@@ -31,8 +31,10 @@ Used in the website code implementation
 ## Demo Steps
 ##### steps
 - asd
-- Go to the actions tab to monitor the CI/CD workflow execution
-- Check the deployed website at alyysab3.trafficmanager.net/
+- Go to the actions tab to monitor the CI/CD workflow execution that takes an average 4 mins from the developers commit on the master branch until the change is released.
+![](https://github.com/Aly-Sabie/CI-CD-Pipeline/blob/master/images/jobs-scr.png?raw=true)
+
+- Check the deployed website at [http://alyysab3.trafficmanager.net/](alyysab3.trafficmanager.net/)
 - You can check uploaded build artifacts and test cases by logging into this link [JFrog Artifactory](https://alysab3artifacts.jfrog.io/ui/native/ci-cd-pipeline-npm-locals) and check the artifacts upload date.
 Username:
 ```
