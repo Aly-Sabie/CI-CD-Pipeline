@@ -33,3 +33,7 @@ Used in the website code implementation
 - asd
 - Go to the actions tab to monitor the CI/CD workflow execution
 - Check the deployed website at alyysab3.trafficmanager.net/
+- You can check uploaded artifacts and test cases by logging into this link 
+  - Credentials:
+> username: alyysab3@gmail.com
+> password: P@ssw0rdP@ssw0rd
