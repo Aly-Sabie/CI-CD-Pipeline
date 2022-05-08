@@ -33,7 +33,7 @@ Used in the website code implementation
 - asd
 - Go to the actions tab to monitor the CI/CD workflow execution
 - Check the deployed website at alyysab3.trafficmanager.net/
-- You can check uploaded build artifacts and test cases by logging into this link  and check the artifacts upload date
+- You can check uploaded build artifacts and test cases by logging into this link [a link](https://github.com/user/repo/blob/branch/other_file.md)and check the artifacts upload date
   - Credentials:
 Username:
 ```
@@ -57,4 +57,4 @@ Password:
 P@ssw0rdP@ssw0rd
 ```
   - Screenshot:
-![]()
+![](https://github.com/Aly-Sabie/CI-CD-Pipeline/blob/master/images/dockerhub-scr.png?raw=true)
