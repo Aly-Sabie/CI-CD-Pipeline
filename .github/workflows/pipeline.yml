@@ -212,37 +212,36 @@ jobs:
     needs: build
 
     steps:
-      # - name: executing remote ssh commands using password
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: alyysab32.eastus.cloudapp.azure.com
-      #     username: azureuser
-      #     password: "P@ssw0rdP@ssw0rd"
-      #     port: 22
-      #     script: |
-      #       sudo apt-get update -y;
-      #       sudo apt-get upgrade -y;
-      #       sudo apt-get install apache2 -y;
 
       # Downloading the production build artifacts
       - name: Download Build Artifacts
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.BUILD_Artifact }}
-
-      - run: ls
-      - run: unzip ${{ env.BUILD_Artifact }}
-      - run: ls
-      # - name: Deploy source-code
-      #   uses: appleboy/scp-action@master
-      #   with:
-      #     host: alyysab31.eastus.cloudapp.azure.com
-      #     username: azureuser
-      #     password: "P@ssw0rdP@ssw0rd"
-      #     port: 22
-      #     source: ""
-      #     target: "/var/www/html/"
+      - name: Deploy Build artifacts
+        uses: appleboy/scp-action@master
+        with:
+          host: alyysab31.eastus.cloudapp.azure.com
+          username: azureuser
+          password: "P@ssw0rdP@ssw0rd"
+          port: 22
+          source: ${{ env.BUILD_Artifact }}
+          target: "/var/www/html/"
         
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: alyysab31.eastus.cloudapp.azure.com
+          username: azureuser
+          password: "P@ssw0rdP@ssw0rd"
+          port: 22
+          script: |
+            ls;
+            ls /var/www/html/;
+
+
+
+
   # deploy:  # A dummy deployment job
 
   #   runs-on: ubuntu-latest
