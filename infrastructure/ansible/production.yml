@@ -1,0 +1,21 @@
+host: localhost
+connection: local
+vars:
+  resource_group: CD-rg
+  app_name: alyysab3newApp
+  plan_name: newServicePlan
+  location: eastus
+tasks:
+  - name: Creating Azure App Service
+    azure_rm_app:
+      resource_group: "{{ resource_group }}"
+      name: "{{ app_name }}"
+      plan:
+        resource_group: "{{ resource_group }}"
+        name: "{{ newServicePlan }}"
+        is_linux: true
+        sku: S1
+        number_of_workers: 2
+      frameworks:
+        - name: "node"
+
