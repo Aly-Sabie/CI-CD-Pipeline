@@ -29,9 +29,9 @@ Used in the website code implementation
 
 
 ## Demo Steps
-##### steps
+##### Steps
 - Make any changes in the repository files to see it lastly deployed on the production server.
-> For example: You can change `website/src/assets/images/pets.png` with any other image.
+> For example: You can change `website/src/assets/images/pets.png` file with any other image.
 - Upload all this code to a GitHub repository.
 - Go to the actions tab to monitor the CI/CD workflow execution that takes an average 4 mins from the developers commit on the master branch until the change is released.
 - You can enter each job of these jobs and check it's execution step by step.
