@@ -203,8 +203,20 @@ jobs:
       - name: Uploading the test results
         run: jfrog rt u ${{ env.TEST_Artifact }} ci-cd-pipeline-npm
 
-      
-      
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: alyysab31.eastus.cloudapp.azure.com
+          username: azureuser
+          password: "P@ssw0rdP@ssw0rd"
+          port: 22
+          script: whoami
+        
   # deploy:  # A dummy deployment job
 
   #   runs-on: ubuntu-latest
