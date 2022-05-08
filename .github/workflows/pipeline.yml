@@ -238,7 +238,7 @@ jobs:
       - name: Disable The staging node
         uses: azure/CLI@v1
         with:
-          inlineScript: az network traffic-manager endpoint update -g deployment --profile-name alyysab3 -n node2 --endpoint-status Disabled --type azureEndpoints
+          inlineScript: az network traffic-manager endpoint update -g deployment --profile-name alyysab3 -n node2 --endpoint-status Disabled --weight 1 --type azureEndpoints
 
       - name: Deploy to the staging node
         uses: appleboy/scp-action@master
@@ -253,12 +253,12 @@ jobs:
       - name: Enable The staging node
         uses: azure/CLI@v1
         with:
-          inlineScript: az network traffic-manager endpoint update -g deployment --profile-name alyysab3 -n node2 --endpoint-status Enabled --type azureEndpoints
+          inlineScript: az network traffic-manager endpoint update -g deployment --profile-name alyysab3 -n node2 --endpoint-status Enabled --weight 1000 --type azureEndpoints
 
       - name: Disable The production node
         uses: azure/CLI@v1
         with:
-          inlineScript: az network traffic-manager endpoint update -g deployment --profile-name alyysab3 -n node1 --endpoint-status Disabled --type azureEndpoints
+          inlineScript: az network traffic-manager endpoint update -g deployment --profile-name alyysab3 -n node1 --endpoint-status Disabled --weight 1 --type azureEndpoints
 
 
       - name: Deploy to the production node
@@ -274,7 +274,7 @@ jobs:
       - name: Enable The production node
         uses: azure/CLI@v1
         with:
-          inlineScript: az network traffic-manager endpoint update -g deployment --profile-name alyysab3 -n node1 --endpoint-status Enabled --type azureEndpoints
+          inlineScript: az network traffic-manager endpoint update -g deployment --profile-name alyysab3 -n node1 --endpoint-status Enabled --weight 1000 --type azureEndpoints
     
         #   - name: executing remote ssh commands using password
         # uses: appleboy/ssh-action@master
